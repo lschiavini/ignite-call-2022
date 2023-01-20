@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <Container>
       <Hero>
-        <Heading>Easy Scheduling</Heading>
-        <Text>
+        <Heading size="4xl">Easy Scheduling</Heading>
+        <Text size={'lg'}>
           Connect your calendar and allow people to schedule time on your
           available spots.
         </Text>
