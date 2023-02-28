@@ -8,7 +8,9 @@ export default function Home() {
   return (
     <Container>
       <Hero>
-        <Heading size="4xl">Easy Scheduling</Heading>
+        <Heading as="h1" size="4xl">
+          Easy Scheduling
+        </Heading>
         <Text size={'lg'}>
           Connect your calendar and allow people to schedule time on your
           available spots.
@@ -17,7 +19,7 @@ export default function Home() {
       <Preview>
         <Image
           src={previewImage}
-          height={400}
+          height={400} // highest height
           quality={100}
           alt={'calendar image'}
           priority
