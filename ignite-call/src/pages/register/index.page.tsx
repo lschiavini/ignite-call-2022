@@ -9,8 +9,8 @@ export default function Register() {
       <Header>
         <Heading as="strong">Welcome to Ignite Call!</Heading>
         <Text>
-          We need a couple of info to get you settled. Don't worry, you'll be
-          able to edit them later.
+          {`We need a couple of info to get you settled. Don't worry,
+          you'll be able to edit them later.`}
         </Text>
 
         <MultiStep size={4} currentStep={1} />
@@ -24,7 +24,7 @@ export default function Register() {
 
         <label>
           <Text size="sm">Full Name</Text>
-          <TextInput placeholder="your name" />
+          <TextInput placeholder="Your Name" />
         </label>
 
         <Button type="submit">
