@@ -10,6 +10,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { api } from '@/src/lib/axios'
 
 export default function Register() {
   const {
@@ -21,8 +22,15 @@ export default function Register() {
     resolver: zodResolver(registerFormSchema),
   })
 
-  function handleRegister(data: RegisterFormData) {
-    console.log(data)
+  async function handleRegister(data: RegisterFormData) {
+    try {
+      await api.post('/users', {
+        name: data.name,
+        username: data.username,
+      })
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   const router = useRouter()
