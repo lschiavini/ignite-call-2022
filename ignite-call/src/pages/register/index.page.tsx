@@ -8,11 +8,14 @@ import {
 } from '@/src/pages/register/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 export default function Register() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerFormSchema),
@@ -21,6 +24,13 @@ export default function Register() {
   function handleRegister(data: RegisterFormData) {
     console.log(data)
   }
+
+  const router = useRouter()
+  useEffect(() => {
+    if (router.query.username) {
+      setValue('username', String(router.query.username))
+    }
+  }, [router.query?.username, setValue])
 
   return (
     <Container>

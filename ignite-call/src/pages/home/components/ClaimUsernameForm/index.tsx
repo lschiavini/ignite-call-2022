@@ -7,18 +7,22 @@ import {
   ClaimUsernameFormSchema,
 } from '@/src/pages/home/components/ClaimUsernameForm/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/router'
 
 export function ClaimUsernameForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<ClaimUsernameFormData>({
     resolver: zodResolver(ClaimUsernameFormSchema),
   })
 
+  const router = useRouter()
+
   async function handleClaimUsername(data: ClaimUsernameFormData) {
-    console.log(data)
+    const { username } = data
+    router.push(`/register?username=${username}`)
   }
 
   console.log({ errors })
@@ -31,7 +35,7 @@ export function ClaimUsernameForm() {
           {...register('username')}
           placeholder="your-username"
         />
-        <Button size="sm" type="submit">
+        <Button size="sm" type="submit" disabled={isSubmitting}>
           Reserve
           <ArrowRight />
         </Button>
