@@ -7,6 +7,9 @@ const nextConfig = {
     'api.ts',
     'api.tsx', // creates routes only if the file follows {{name}}.page.tsx
   ],
+  images: {
+    domains: ['https://lh3.googleusercontent.com/'],
+  },
 }
 
 module.exports = nextConfig
