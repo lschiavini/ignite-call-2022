@@ -3,7 +3,7 @@ export function getWeekDays() {
 
   return Array.from(Array(7).keys())
     .map((day) =>
-      formatter.format(new Date(Date.UTC(new Date().getFullYear(), 1, day))),
+      formatter.format(new Date(Date.UTC(new Date().getFullYear(), 7, day))),
     )
     .map((weekDay) => {
       return weekDay.substring(0, 1).toUpperCase().concat(weekDay.substring(1))
