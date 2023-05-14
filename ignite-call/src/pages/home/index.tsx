@@ -25,9 +25,9 @@ export default function Home() {
           quality={100}
           alt={'calendar image'}
           priority
+          style={{ borderRadius: '0.5rem' }}
         />
       </Preview>
-      
     </Container>
   )
 }
