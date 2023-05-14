@@ -18,6 +18,7 @@ import { Container, Header } from '../styles'
 import { FormAnnotation, ProfileBox } from './styles'
 import { useRouter } from 'next/router'
 import { api } from '@/src/lib/axios'
+import { NextSeo } from 'next-seo'
 
 const updateProfileSchema = z.object({
   bio: z.string(),
@@ -48,40 +49,44 @@ export default function UpdateProfile() {
   }
 
   return (
-    <Container>
-      <Header>
-        <Heading as="strong">Welcome to Ignite Call!</Heading>
-        <Text>
-          We need a few info to create your profile! You can edit this later.
-        </Text>
+    <>
+      <NextSeo title={'Update Profile | Ignite'} noindex />
+      <Container>
+        <Header>
+          <Heading as="strong">Welcome to Ignite Call!</Heading>
+          <Text>
+            We need a few info to create your profile! You can edit this later.
+          </Text>
 
-        <MultiStep size={4} currentStep={4} />
-      </Header>
+          <MultiStep size={4} currentStep={4} />
+        </Header>
 
-      <ProfileBox as="form" onSubmit={handleSubmit(handleUpdateProfile)}>
-        <label>
-          <Text>Profile Picture</Text>
-          <Avatar
-            src={session.data?.user.avatar_url}
-            referrerPolicy="no-referrer"
-            alt={session.data?.user.name}
-          />
-        </label>
+        <ProfileBox as="form" onSubmit={handleSubmit(handleUpdateProfile)}>
+          <label>
+            <Text>Profile Picture</Text>
+            <Avatar
+              src={session.data?.user.avatar_url}
+              referrerPolicy="no-referrer"
+              alt={session.data?.user.name}
+            />
+          </label>
 
-        <label>
-          <Text size="sm">About You</Text>
-          <TextArea {...register('bio')} />
-          <FormAnnotation size="sm">
-            Talk a little about yourself. This will be displayed on your profile
-          </FormAnnotation>
-        </label>
+          <label>
+            <Text size="sm">About You</Text>
+            <TextArea {...register('bio')} />
+            <FormAnnotation size="sm">
+              Talk a little about yourself. This will be displayed on your
+              profile
+            </FormAnnotation>
+          </label>
 
-        <Button type="submit" disabled={isSubmitting}>
-          Finish
-          <ArrowRight />
-        </Button>
-      </ProfileBox>
-    </Container>
+          <Button type="submit" disabled={isSubmitting}>
+            Finish
+            <ArrowRight />
+          </Button>
+        </ProfileBox>
+      </Container>
+    </>
   )
 }
 

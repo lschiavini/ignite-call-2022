@@ -12,6 +12,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { api } from '@/src/lib/axios'
 import { AxiosError } from 'axios'
+import { NextSeo } from 'next-seo'
 
 export default function Register() {
   const {
@@ -48,44 +49,47 @@ export default function Register() {
   }, [router.query?.username, setValue])
 
   return (
-    <Container>
-      <Header>
-        <Heading as="strong">Welcome to Ignite Call!</Heading>
-        <Text>
-          {`We need a couple of info to get you settled. Don't worry,
+    <>
+      <NextSeo title="Create an Account | Ignite" />
+      <Container>
+        <Header>
+          <Heading as="strong">Welcome to Ignite Call!</Heading>
+          <Text>
+            {`We need a couple of info to get you settled. Don't worry,
           you'll be able to edit them later.`}
-        </Text>
+          </Text>
 
-        <MultiStep size={4} currentStep={1} />
-      </Header>
+          <MultiStep size={4} currentStep={1} />
+        </Header>
 
-      <Form as="form" onSubmit={handleSubmit(handleRegister)}>
-        <label>
-          <Text size="sm">Username</Text>
-          <TextInput
-            {...register('username')}
-            prefix="ignite.com/"
-            placeholder="your-username"
-          />
-          {errors.username && (
-            <FormError size={'sm'}>{errors.username.message}</FormError>
-          )}
-        </label>
+        <Form as="form" onSubmit={handleSubmit(handleRegister)}>
+          <label>
+            <Text size="sm">Username</Text>
+            <TextInput
+              {...register('username')}
+              prefix="ignite.com/"
+              placeholder="your-username"
+            />
+            {errors.username && (
+              <FormError size={'sm'}>{errors.username.message}</FormError>
+            )}
+          </label>
 
-        <label>
-          <Text size="sm">Full Name</Text>
-          <TextInput {...register('name')} placeholder="Your Name" />
+          <label>
+            <Text size="sm">Full Name</Text>
+            <TextInput {...register('name')} placeholder="Your Name" />
 
-          {errors.name && (
-            <FormError size="sm">{errors.name.message}</FormError>
-          )}
-        </label>
+            {errors.name && (
+              <FormError size="sm">{errors.name.message}</FormError>
+            )}
+          </label>
 
-        <Button type="submit" disabled={isSubmitting}>
-          Next step
-          <ArrowRight />
-        </Button>
-      </Form>
-    </Container>
+          <Button type="submit" disabled={isSubmitting}>
+            Next step
+            <ArrowRight />
+          </Button>
+        </Form>
+      </Container>
+    </>
   )
 }
